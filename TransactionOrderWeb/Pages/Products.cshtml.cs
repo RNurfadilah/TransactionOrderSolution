@@ -25,26 +25,12 @@ namespace TransactionOrderWeb.Pages
 
         public async Task OnGetAsync()
         {
-            var httpClient = _httpClientFactory.CreateClient();
-            var token = HttpContext.Request.Cookies["JwtToken"];
-            if (!string.IsNullOrEmpty(token))
-            {
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
-
-            var response = await httpClient.GetFromJsonAsync<List<Product>>($"{_configuration["ApiBaseUrl"]}api/Product");
-            Products = response ?? new List<Product>();
+            await LoadProductsAsync();
         }
 
         public async Task<IActionResult> OnPostAsync(string productName, float price, int categoryID, int stock)
         {
-            var httpClient = _httpClientFactory.CreateClient();
-            var token = HttpContext.Request.Cookies["JwtToken"];
-            if (!string.IsNullOrEmpty(token))
-            {
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
-
+            var httpClient = CreateHttpClient();
             var product = new Product
             {
                 ProductName = productName,
@@ -65,13 +51,7 @@ namespace TransactionOrderWeb.Pages
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            var httpClient = _httpClientFactory.CreateClient();
-            var token = HttpContext.Request.Cookies["JwtToken"];
-            if (!string.IsNullOrEmpty(token))
-            {
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
-
+            var httpClient = CreateHttpClient();
             var response = await httpClient.DeleteAsync($"{_configuration["ApiBaseUrl"]}api/Product/{id}");
 
             if (!response.IsSuccessStatusCode)
@@ -82,6 +62,22 @@ namespace TransactionOrderWeb.Pages
             return RedirectToPage();
         }
 
-        // Add methods for Update (PUT) similar to OnPostAsync and OnPostDeleteAsync for Delete operation
+        private HttpClient CreateHttpClient()
+        {
+            var httpClient = _httpClientFactory.CreateClient();
+            var token = HttpContext.Request.Cookies["JwtToken"];
+            if (!string.IsNullOrEmpty(token))
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            }
+            return httpClient;
+        }
+
+        private async Task LoadProductsAsync()
+        {
+            var httpClient = CreateHttpClient();
+            var response = await httpClient.GetFromJsonAsync<List<Product>>($"{_configuration["ApiBaseUrl"]}api/Product");
+            Products = response ?? new List<Product>();
+        }
     }
 }
