@@ -1,0 +1,43 @@
+@page
+@model TransactionOrderWeb.Pages.OrderDetailsModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h2>Order Details</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Transaction Detail ID</th>
+                    <th>Transaction ID</th>
+                    <th>Product ID</th>
+                    <th>Category ID</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var detail in Model.OrderDetails)
+                {
+                    <tr>
+                        <td>@detail.TransactionDetailID</td>
+                        <td>@detail.TransactionID</td>
+                        <td>@detail.ProductID</td>
+                        <td>@detail.CategoryID</td>
+                        <td>@detail.TotalPrice</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

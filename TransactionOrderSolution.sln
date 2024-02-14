@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionOrderWeb", "TransactionOrderWeb\TransactionOrderWeb.csproj", "{C3EB4773-CA7D-44FD-9624-AA56F75D054F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionOrderAPI", "TransactionOrderAPI\TransactionOrderAPI.csproj", "{C659830E-DFB5-4C16-860D-14DB3249F75E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3EB4773-CA7D-44FD-9624-AA56F75D054F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3EB4773-CA7D-44FD-9624-AA56F75D054F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3EB4773-CA7D-44FD-9624-AA56F75D054F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3EB4773-CA7D-44FD-9624-AA56F75D054F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C659830E-DFB5-4C16-860D-14DB3249F75E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C659830E-DFB5-4C16-860D-14DB3249F75E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C659830E-DFB5-4C16-860D-14DB3249F75E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C659830E-DFB5-4C16-860D-14DB3249F75E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

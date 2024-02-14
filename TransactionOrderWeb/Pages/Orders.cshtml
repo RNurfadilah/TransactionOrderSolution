@@ -1,0 +1,43 @@
+@page
+@model TransactionOrderWeb.Pages.OrdersModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h2>Orders</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Transaction Date</th>
+                    <th>Transaction Number</th>
+                    <th>Cashier Name</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.Orders)
+                {
+                    <tr>
+                        <td>@order.TransactionID</td>
+                        <td>@order.TransactionDate.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>@order.TransactionNumber</td>
+                        <td>@order.CashierName</td>
+                        <td>@order.TotalAmount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

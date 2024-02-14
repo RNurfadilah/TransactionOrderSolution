@@ -1,0 +1,59 @@
+@page
+@model TransactionOrderWeb.Pages.CategoriesModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h2>Categories</h2>
+
+        <!-- Create/Edit Form -->
+        <form method="post">
+            <input type="hidden" asp-for="Category.CategoryID" />
+            <div class="form-group">
+                <label for="CategoryName">Category Name</label>
+                <input type="text" class="form-control" id="CategoryName" asp-for="Category.CategoryName" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Category ID</th>
+                    <th>Category Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model.Categories)
+                {
+                    <tr>
+                        <td>@category.CategoryID</td>
+                        <td>@category.CategoryName</td>
+                        <td>
+                            <button formmethod="post" formaction="/Categories" formaction="/Categories"
+                                class="btn btn-secondary">
+                                Edit
+                            </button>
+                            <button formmethod="post" formaction="/Categories?handler=Delete&id=@category.CategoryID"
+                                class="btn btn-danger">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
