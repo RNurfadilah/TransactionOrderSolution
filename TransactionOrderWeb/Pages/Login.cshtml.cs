@@ -10,6 +10,7 @@ using TransactionOrderWeb.Models;
 
 namespace TransactionOrderWeb.Pages
 {
+    [AllowAnonymous]
     public class LoginModel : PageModel
     {
         private readonly IConfiguration _configuration;
@@ -37,16 +38,6 @@ namespace TransactionOrderWeb.Pages
 
             // Handle login failure
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return Page();
-        }
-
-        public IActionResult OnGet()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToPage("/Index");
-            }
-
             return Page();
         }
 

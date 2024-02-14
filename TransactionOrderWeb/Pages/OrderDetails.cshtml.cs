@@ -10,6 +10,7 @@ using System.Net.Http.Json;
 
 namespace TransactionOrderWeb.Pages
 {
+    [AllowAnonymous]
     public class OrderDetailsModel : PageModel
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -40,7 +41,7 @@ namespace TransactionOrderWeb.Pages
             }
             else
             {
-                OrderDetails = new List<OrderDetail>(); // Ensure OrderDetails is not null to avoid issues in the Razor view
+                OrderDetails = new List<OrderDetail>();
             }
         }
     }

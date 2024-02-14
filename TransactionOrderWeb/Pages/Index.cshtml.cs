@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace TransactionOrderWeb.Pages
 {
-    [Authorize]
+    [AllowAnonymous]
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;

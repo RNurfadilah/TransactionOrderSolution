@@ -8,22 +8,17 @@ namespace TransactionOrderAPI.Models
     public class OrderDetail
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]        
         [StringLength(50)]
         public string TransactionDetailID { get; set; } = Guid.NewGuid().ToString();
 
-        [Required]
         [StringLength(50)]
         public string TransactionID { get; set; }
 
-        [ForeignKey("Product")]
         public int ProductID { get; set; }
 
-        [ForeignKey("Category")]
         public int CategoryID { get; set; }
 
-        [Required]
         public float TotalPrice { get; set; }
 
         public virtual Product Product { get; set; }

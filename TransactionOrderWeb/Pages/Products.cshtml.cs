@@ -11,6 +11,7 @@ using System.Net.Http.Headers;
 
 namespace TransactionOrderWeb.Pages
 {
+    [AllowAnonymous]
     public class ProductsModel : PageModel
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -28,7 +29,7 @@ namespace TransactionOrderWeb.Pages
             await LoadProductsAsync();
         }
 
-        public async Task<IActionResult> OnPostAsync(string productName, float price, int categoryID, int stock)
+        public async Task<IActionResult> OnPostAsync(string productName, float price, int categoryID, int stock, string productImage = "default_image_path")
         {
             var httpClient = CreateHttpClient();
             var product = new Product
@@ -36,14 +37,19 @@ namespace TransactionOrderWeb.Pages
                 ProductName = productName,
                 Price = price,
                 CategoryID = categoryID,
-                Stock = stock
+                Stock = stock,
+                ProductImage = productImage
             };
 
             var response = await httpClient.PostAsJsonAsync($"{_configuration["ApiBaseUrl"]}api/Product", product);
 
             if (!response.IsSuccessStatusCode)
             {
-                // Handle error or set a flag to display an error message
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    return BadRequest($"Error calling API: {errorContent}");
+                }
             }
 
             return RedirectToPage();
@@ -56,7 +62,11 @@ namespace TransactionOrderWeb.Pages
 
             if (!response.IsSuccessStatusCode)
             {
-                // Handle error or set a flag to display an error message
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    return BadRequest($"Error calling API: {errorContent}");
+                }
             }
 
             return RedirectToPage();

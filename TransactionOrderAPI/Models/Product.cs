@@ -14,16 +14,12 @@ namespace TransactionOrderAPI.Models
         [StringLength(500)]
         public string ProductName { get; set; }
 
-        [Required]
         public float Price { get; set; }
 
-        [ForeignKey("Category")]
         public int CategoryID { get; set; }
 
-        [Required]
         public int Stock { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string ProductImage { get; set; }
 

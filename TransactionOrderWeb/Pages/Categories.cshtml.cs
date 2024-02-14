@@ -11,6 +11,7 @@ using System.Net.Http.Json;
 
 namespace TransactionOrderWeb.Pages
 {
+    [AllowAnonymous]
     public class CategoriesModel : PageModel
     {
         private readonly IHttpClientFactory _httpClientFactory;
